@@ -9,9 +9,63 @@
   "item": [
     {
       "name": "New Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verificar que la respuesta sea 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar que el tiempo sea menor a 5000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar que el body no esté vacío\", function () {\r",
+              "    pm.expect(pm.response.text()).to.not.be.empty;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar que el Content-Type sea application/json\", function () {\r",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\"))\r",
+              "        .to.include(\"application/json\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verificar que el tamaño de respuesta sea mayor a 0\", function () {\r",
+              "    pm.expect(pm.response.responseSize).to.be.above(0);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "https://k51qryqov3.execute-api.ap-southeast-2.amazonaws.com/prod/makes/ckl2phsabijs71623vk0?modelsPage=1",
+          "protocol": "https",
+          "host": [
+            "k51qryqov3",
+            "execute-api",
+            "ap-southeast-2",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            "prod",
+            "makes",
+            "ckl2phsabijs71623vk0"
+          ],
+          "query": [
+            {
+              "key": "modelsPage",
+              "value": "1"
+            }
+          ]
+        }
       },
       "response": []
     }
